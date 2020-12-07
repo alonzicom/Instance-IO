@@ -1,4 +1,5 @@
 <iio>
   <header />
+  <section id="hello" message="hello friend" />
   <footer />
 <iio>

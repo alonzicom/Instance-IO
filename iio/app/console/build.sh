@@ -3,6 +3,13 @@
 # -- Get the Build Type :
 TYPE=$1
 
+# -- Global Configurations:
+stylesheet=/webroot/public/Assets/css/style.css;
+
+# -- Make Sure We Delete and Re-Build Stylesheet:
+rm $stylesheet;
+touch $stylesheet;
+
 # -- Run Style Parser:
 bash run.sh parse-styles;
 

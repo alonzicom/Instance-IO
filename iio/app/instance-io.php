@@ -8,7 +8,7 @@ require_once( IIO . 'app/controller/index.php' );
 
 class IIO {
 
-  public function __construct($build_type,$route){
+  public function __construct($build_type,$route = ''){
 
     switch($build_type){
       case 'service' :
