@@ -9,6 +9,7 @@ require_once( IIO . 'app/controller/Component/components.php');
 class PAGE {
 
     public function __construct($page,$config){
+      $this->dom = new DOMDocument();
       $this->render = $this->Parse($page,$config);
     }
 
@@ -25,39 +26,75 @@ class PAGE {
       $ie = $config['iio-end'];
 
       $render = new COMPONENTS;
+      $dom = new DOMDocument();
 
-      $components = $render->renderComponentItems($page,$var);
+      $componentAttributes = [];
+      @$dom->loadHTML($page);
 
-      // -- Conditions :
-      if($config['cond']!==''){
-        $components = $render->parseConditions($components,$config['cond']);
+      $filterTags = ["html","body","iio"];
+
+      foreach($dom->getElementsByTagName('*') as $element){
+          
+          // -- This gets the contents of tag:
+          //$element->nodeValue;
+          $thisComponentAttributes = [];
+
+          if(!in_array($element->tagName,$filterTags)){
+            if($element->hasAttributes()){
+              foreach ($element->attributes as $attr) {
+                $thisComponentAttributes[] = [
+                  $attr->nodeName => $attr->nodeValue
+                ];
+              }
+            }
+
+            $componentAttributes[$element->tagName] = $thisComponentAttributes;
+
+          }
+    
       }
 
-      $components = $render->cleanCond($components);
+      $componentArrays = $componentAttributes;
+      $components = array_keys($componentAttributes);
 
-      $comps = explode('/>',$components);
-      $comp_count = count($comps);
+      $count = count($components);
 
       $comp = [];
       $page = '';
       $styles = '';
 
-      for($c=0;$c<$comp_count;$c++){
+      for($c=0;$c<$count;$c++){
 
-        $this_comp = $render->parseComponent($comps[$c]);
+        $thisComponent = $components[$c];
 
-        if($this_comp!=''){
+        // -- This Needs to Render the Component Vars :
+        $compVars = $componentArrays[$thisComponent];
+        $varCount = count($compVars);
 
-          // -- Get Contents of this Component :
-          $component = file_get_contents( IIO . 'components/'.$this_comp.'.html');
+        
+        if($thisComponent == 'section'){
+            $thisComponent = $thisComponent . '/' . $componentArrays[$thisComponent][0]['id'];
+        }
 
-          // -- Get Component Style :
-          $component = $render->cleanStyle($component);
+        // -- Get Contents of this Component :
+        $component = file_get_contents( IIO . 'components/'.$thisComponent.'.html');
 
-          // -- Return Cleaned Component :
-          $page .= $component;
+        // -- Get Component Style :
+        $component = $render->cleanStyle($component);
+
+        for($v=0;$v<$varCount;$v++){
+
+          $thisVarKey = key($compVars[$v]);
+          $thisVarValue = $compVars[$v][$thisVarKey];
+
+          // -- Replace Page Variables with Data/Content :
+          $component = str_replace($is.$thisVarKey.$ie, $thisVarValue, $component);
 
         }
+
+        // -- Return Cleaned Component :
+        $page .= $component;
+
       }
 
 
@@ -78,30 +115,18 @@ class PAGE {
       $var_count = count($vars);
 
       for($v=0;$v<$var_count;$v++){
-
         // -- Replace Page Variables with Data/Content :
         $page = str_replace($is.$vars[$v]['name'].$ie, $vars[$v]['data'], $page);
-
       }
 
       // -- This will need to be extended :
       $page = $render->cleanTags($page,$is,$ie);
 
-      // -- Get the full URI :
-
-
+      // -- Return Rendered Page :
       return $page;
 
 
     }
-
-
-
-
-
-
-
-
 
 
 

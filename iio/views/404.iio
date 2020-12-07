@@ -1,5 +1,5 @@
 <iio>
   <header />
-  <section:404 />
+  <section id="404" />
   <footer />
 <iio>
