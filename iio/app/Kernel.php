@@ -1,15 +1,31 @@
 <?php
 
+include_once __DIR__ . '/Request/Router.php';
+
 class Kernel {
 
-    public function __construct(){}
+    public function __construct(){
+        $this->Path = (new Router())->Get();
+    }
 
     public function Build(){
         return 'building...';
     }
 
     public function Run(){
-        return 'running...';
+
+        // -- Compile the single requested page,
+        // -- based on the URI ::
+        return 
+            $this->Compile(
+                $this->Path
+        );
+    
+    }
+
+
+    private function Compile(){
+        return $this->Path[0];
     }
 
 }
