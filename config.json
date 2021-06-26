@@ -1,4 +1,14 @@
 {
     "name" : "IIO-Application",
-    "ver"  : "3.0.0"
+    "ver"  : "3.0.0",
+    "nav" : { 
+        "main" : {
+            "type" : "static",
+            "items" : []
+        },
+        "sub" : {
+            "type" : "model",
+            "class" : "SubNav"
+        }
+    } 
 }

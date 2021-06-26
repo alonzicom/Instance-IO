@@ -24,8 +24,8 @@ class Kernel {
     }
 
 
-    private function Compile(){
-        return $this->Path[0];
+    private function Compile($path){
+        return $path[0];
     }
 
 }
