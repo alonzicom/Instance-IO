@@ -1,0 +1,17 @@
+{ 
+    
+    "main" : 
+    
+    [
+            {
+                "label" : "Home",
+                "path" : "/",
+                "child" : null
+            }
+    ],
+
+    "sub" : 
+    
+    []
+    
+}
