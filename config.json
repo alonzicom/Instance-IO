@@ -1,7 +1,7 @@
 {
     "name" : "IIO-Application",
     "ver"  : "3.0.0",
-    "nav" : { 
+    "nav" : {
         "main" : {
             "type" : "static",
             "items" : []
