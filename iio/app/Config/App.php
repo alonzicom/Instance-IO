@@ -9,8 +9,18 @@ class Config {
             ), true
         );
         
-        $this->nav = $this->config->nav;
+        $this->nav = $this->config['nav'];
 
     }
 
+    public function get(){
+        return $this->config;
+    }
+
+    public function save($configuration){
+        file_put_contents(
+            $this->configFile,
+            json_encode($configuration, JSON_PRETTY_PRINT)
+        );
+    }
 }

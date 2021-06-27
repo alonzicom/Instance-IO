@@ -1,14 +1,54 @@
 {
-    "name" : "IIO-Application",
-    "ver"  : "3.0.0",
-    "nav" : {
-        "main" : {
-            "type" : "static",
-            "items" : []
+    "name": "IIO-Application",
+    "ver": "3.0.0",
+    "nav": [
+        {
+            "id": "70B9566135CAD5ED",
+            "name": "main",
+            "type": "static",
+            "method": false,
+            "items": [
+                {
+                    "label": "About",
+                    "path": "\/about",
+                    "target": false,
+                    "child": false
+                },
+                {
+                    "label": "Work",
+                    "path": "\/work",
+                    "target": false,
+                    "child": false
+                },
+                {
+                    "label": "Contact",
+                    "path": "\/contact",
+                    "target": false,
+                    "child": false
+                }
+            ]
         },
-        "sub" : {
-            "type" : "model",
-            "class" : "SubNav"
+        {
+            "id": "3B99EE9EA827F150",
+            "name": "sub",
+            "type": "static",
+            "method": false,
+            "items": [
+                {
+                    "label": "Contact",
+                    "path": "\/contact-us",
+                    "target": false,
+                    "child": false
+                }
+            ]
+        },
+        {
+            "id": "BD602B8F4C9C41D9",
+            "name": "about",
+            "type": "static",
+            "method": false,
+            "items": []
         }
-    } 
+    ],
+    "sitemap": []
 }

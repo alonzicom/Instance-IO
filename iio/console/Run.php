@@ -66,7 +66,7 @@ class ConsoleRun {
         include_once __DIR__ . '/commands/' . $this->available[$this->command] . '.php';
 
         // -- Run the Command ::
-        (new $this->available[$this->command])->handle();
+        (new $this->available[$this->command]($this->in))->handle();
 
         $this->console->success('Complete');
 

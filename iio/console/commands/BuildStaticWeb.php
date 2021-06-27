@@ -5,7 +5,7 @@ include_once __DIR__ . '/../../app/Support/Console/Console.php';
 
 class BuildStaticWeb extends Console {
 
-    public function __construct(public $title = 'Build Static Website'){
+    public function __construct($input, public $title = 'Build Static Website'){
         $this->IIO = new IIO('static');
         $this->desc($this->title);
     }

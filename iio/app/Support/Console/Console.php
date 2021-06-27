@@ -26,4 +26,5 @@ class Console {
     public function line($message){
         echo ("\n\n$message\n");
     }
+
 }

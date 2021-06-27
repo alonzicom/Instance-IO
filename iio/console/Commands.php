@@ -5,5 +5,7 @@
  */
 
 $commands = [
-    'build:website' => 'BuildStaticWeb'
+    'build:website' => 'BuildStaticWeb',
+    'menu:create' => 'CreateMenu',
+    'menu:add-item' => 'AddToMenu'
 ];
