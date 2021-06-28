@@ -1,6 +1,5 @@
 <?php 
 
-
 class Console {
 
     public function title(){

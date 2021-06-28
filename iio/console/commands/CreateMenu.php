@@ -9,7 +9,7 @@ class CreateMenu extends Console {
 
     public function __construct(public $input, public $title = 'Create New Menu'){
         $this->desc($this->title);
-        $this->config = new Nav;
+        $this->config = new Nav('src');
         $this->hash = new Hash;
     }
 

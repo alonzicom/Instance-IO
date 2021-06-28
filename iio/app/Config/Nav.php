@@ -46,11 +46,8 @@ class Nav extends Config {
     }
 
     public function addToItemsList($key,$newItem){
-        
         $this->nav[$key]['items'][count($this->nav[$key]['items'])] = $newItem;
-
         return $this->nav;
-
     }
 
 
