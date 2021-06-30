@@ -59,19 +59,21 @@
     ],
     "sitemap": [
         {
-            "id": "EA2422F72E9583B3",
+            "id": "6188B7DABF673532",
             "name": "home",
             "title": "Home Page",
             "type": "static",
             "slug": false,
+            "view": "Home",
             "method": false,
             "items": [
                 {
-                    "id": "23FEFC45D3C20428",
+                    "id": "0DDCD176C14E5808",
                     "name": "page",
                     "title": "new page",
                     "type": "static",
                     "slug": "new-page",
+                    "view": "Page",
                     "method": false,
                     "items": []
                 }

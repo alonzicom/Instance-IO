@@ -38,17 +38,20 @@ class AddToPage extends Console {
             // -- Item Slug :
             !isset($this->input[3]) ||
 
-            // -- Item Type :
+            // -- Item View :
             !isset($this->input[4]) ||
 
-            // -- Method :
+            // -- Item Type :
             !isset($this->input[5]) ||
 
+            // -- Method :
+            !isset($this->input[6]) ||
+
             // -- Parent (leave "-" if none) :
-            !isset($this->input[6]) 
+            !isset($this->input[7]) 
 
         ){
-            $this->error('Error: Missing arguments in command, expected 6. Label, Title, Slug, Type, Method, Parent. Exiting...');
+            $this->error('Error: Missing arguments in command, expected 6. Label, Title, Slug, View, Type, Method, Parent. Exiting...');
             return;
         }
 
@@ -61,13 +64,17 @@ class AddToPage extends Console {
         // -- Item Slug :
         $item_slug = $this->input[3];
 
-        // -- Item Target :
-        $item_type = $this->input[4] == '-' ? false : $this->input[4];
+        // -- IIO View :
+        $item_view = $this->input[4];
 
-        $item_method = $this->input[5] == '-' ? false : $this->input[5];
+        // -- Item Target :
+        $item_type = $this->input[5] == '-' ? false : $this->input[5];
+
+        // -- Define Custom Method :
+        $item_method = $this->input[5] == '-' ? false : $this->input[6];
 
         // -- Item Parent :
-        $item_parent = $this->config->getIdByName($this->input[6]);
+        $item_parent = $this->config->getIdByName($this->input[7]);
 
         // -- Build Menu Object :
         $newPage = [
@@ -76,6 +83,7 @@ class AddToPage extends Console {
             'title' => $item_title,
             'type' => $item_type,
             'slug' => $item_slug == '-' ? false : $item_slug,
+            'view' => $item_view,
             'method' => $item_method == '-' ? false : $item_method,
             'items' => []
         ];

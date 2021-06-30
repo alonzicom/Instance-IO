@@ -20,7 +20,10 @@ class BuildStaticWeb extends Console {
         /**
          *  Running the Build ::
          */
-        $this->IIO->Go();
+        $iio_response = $this->IIO->Go();
+
+        /* TODO: This is temporary */
+        $this->line($iio_response);
 
         /**
          * Complete :
