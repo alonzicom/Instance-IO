@@ -20,6 +20,34 @@ class Sitemap extends Config {
         return count($this->sitemap);
     }
 
-    
+    public function addPage($newPage){
+        $this->sitemap[$this->count()] = $newPage;
+        return $this->sitemap;
+    }
+
+    public function getIdByName($name){
+        $this_id = false;
+        foreach($this->sitemap as $map){
+            if($map['name'] == $name){
+                $this_id = $map['id'];
+            }
+        }
+        return $this_id;
+    }
+
+    public function addItemToPage($id,$newItem){
+        $newObj = [];
+        foreach($this->sitemap as $key => $map){
+            if($map['id'] == $id){
+                $newObj = $this->addToItemsList($key,$newItem);
+            }
+        }
+        return $newObj;
+    }
+
+    public function addToItemsList($key,$newItem){
+        $this->sitemap[$key]['items'][count($this->sitemap[$key]['items'])] = $newItem;
+        return $this->sitemap;
+    }
 
 }

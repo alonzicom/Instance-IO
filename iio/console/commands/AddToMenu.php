@@ -7,7 +7,7 @@ class AddToMenu extends Console {
 
     public function __construct(public $input, public $title = 'Add Item To Menu'){
         $this->desc($this->title);
-        $this->config = new Nav;
+        $this->config = new Nav('src');
     }
 
     public function handle(){

@@ -3,14 +3,14 @@
 class Config {
     
     public function __construct( 
-        public $type = 'min', 
-        private $configFile = __DIR__ . '/../../../config.json', 
-        private $configFileSrc = __DIR__ . '/../../../config.src.json' 
+        public $type = 'lock', 
+        private $configFileLock = __DIR__ . '/../../../config.lock.json', 
+        private $configFile = __DIR__ . '/../../../config.json' 
     ){
 
         $this->config = json_decode(
             file_get_contents(
-                $type == 'min' ? $configFile : $configFileSrc
+                $type == 'lock' ? $configFileLock : $configFile
             ), true
         );
         
@@ -25,17 +25,17 @@ class Config {
 
     public function save($configuration){
         file_put_contents(
-            $this->type == 'min' ? $this->configFile : $this->configFileSrc,
-            $this->type == 'min' ? 
+            $this->type == 'lock' ? $this->configFileLock : $this->configFile,
+            $this->type == 'lock' ? 
                 json_encode($configuration) : 
                 json_encode($configuration, JSON_PRETTY_PRINT)
         );
     }
 
     public function publish(){
-        $config = json_decode(file_get_contents($this->configFileSrc));
+        $config = json_decode(file_get_contents($this->configFile));
         file_put_contents(
-            $this->configFile, json_encode($config)
+            $this->configFileLock, json_encode($config)
         );
     }
 }
