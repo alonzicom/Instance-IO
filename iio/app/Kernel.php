@@ -7,7 +7,6 @@ include_once __DIR__ . '/Controllers/Compiler.php';
 class Kernel {
 
     public function __construct(){
-        $this->Path = (new Router())->Get();
         $this->Sitemap = (new Sitemap)->map();
     }
 
@@ -20,7 +19,9 @@ class Kernel {
     public function Run(){
         // -- Compile the single requested page,
         // -- based on the URI ::
-        return $this->Compile($this->Path);
+        return $this->Compile(
+            (new Router())->Get()
+        );
     }
 
 

@@ -25,29 +25,54 @@ class Sitemap extends Config {
         return $this->sitemap;
     }
 
-    public function getIdByName($name){
+    public function getIdByName($name, $sitemap = null){
         $this_id = false;
-        foreach($this->sitemap as $map){
+        $sitemap = $sitemap ?? $this->sitemap;
+
+        foreach($sitemap as $map){
             if($map['name'] == $name){
                 $this_id = $map['id'];
+            }
+            if(count($map['items'])>0){
+                $this_id = $this->getIdByName($name,$map['items']);
             }
         }
         return $this_id;
     }
 
-    public function addItemToPage($id,$newItem){
-        $newObj = [];
-        foreach($this->sitemap as $key => $map){
-            if($map['id'] == $id){
-                $newObj = $this->addToItemsList($key,$newItem);
-            }
-        }
-        return $newObj;
+    public function addItemToPage($parent_id,$newItem){
+        return $this->morphSitemap($this->sitemap, $parent_id, $newItem);
     }
 
-    public function addToItemsList($key,$newItem){
-        $this->sitemap[$key]['items'][count($this->sitemap[$key]['items'])] = $newItem;
-        return $this->sitemap;
+    public function morphSitemap($sitemap, $parent_id, $obj){
+
+        $newSitemap = [];
+
+        foreach($sitemap as $map){
+
+            if($map['id'] == $parent_id){
+                
+                $map['items'][count($map['items'])] = $obj;
+                $newmap = $map;
+
+            }else if(
+                !empty($map['items'])
+            ){
+                $map['items'] = $this->morphSitemap($map['items'], $parent_id, $obj);
+                $newmap = $map;
+
+            }else {
+                $newmap = $map;
+            }
+
+            $newSitemap[] = $newmap;
+        
+        }
+
+        return $newSitemap;
+
     }
+
+
 
 }

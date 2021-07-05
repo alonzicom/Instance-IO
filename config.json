@@ -59,25 +59,76 @@
     ],
     "sitemap": [
         {
-            "id": "6188B7DABF673532",
-            "name": "home",
-            "title": "Home Page",
+            "id": "37B82D42877D8F3A",
+            "name": "blog",
+            "title": "Blog",
             "type": "static",
-            "slug": false,
+            "slug": "blog",
             "view": "Home",
             "method": false,
             "items": [
                 {
-                    "id": "0DDCD176C14E5808",
-                    "name": "page",
+                    "id": "9B695C0E5EFDD29D",
+                    "name": "testing",
                     "title": "new page",
                     "type": "static",
-                    "slug": "new-page",
+                    "slug": "testing",
+                    "view": "Page",
+                    "method": false,
+                    "items": []
+                },
+                {
+                    "id": "EF66D8C80D508E97",
+                    "name": "testing-1",
+                    "title": "new page",
+                    "type": "static",
+                    "slug": "testing-1",
+                    "view": "Page",
+                    "method": false,
+                    "items": [
+                        {
+                            "id": "EF66D8CF5463880D508E97",
+                            "name": "testing-5",
+                            "title": "new page",
+                            "type": "static",
+                            "slug": "testing-5",
+                            "view": "Page",
+                            "method": false,
+                            "items": []
+                        }
+                    ]
+                },
+                {
+                    "id": "EF66D8Cdgvetge80D508E97",
+                    "name": "testing-3",
+                    "title": "new page",
+                    "type": "static",
+                    "slug": "testing-3",
                     "view": "Page",
                     "method": false,
                     "items": []
                 }
             ]
+        },
+        {
+            "id": "38F6E111111B1065E66E4D",
+            "name": "hello",
+            "title": "Hello",
+            "type": "static",
+            "slug": "test",
+            "view": "Home",
+            "method": false,
+            "items": []
+        },
+        {
+            "id": "38F6EB1065E66E4D",
+            "name": "hello2",
+            "title": "Hello2",
+            "type": "static",
+            "slug": "test",
+            "view": "Home",
+            "method": false,
+            "items": []
         }
     ]
 }
