@@ -87,12 +87,9 @@ class AddToPage extends Console {
             'method' => $item_method == '-' ? false : $item_method,
             'items' => []
         ];
-        
+
         // -- Mount Menu Object to Configuration :
         $configuration['sitemap'] = $this->config->addItemToPage($item_parent,$newPage);
-
-        $this->line(json_encode($configuration['sitemap']) . ' ----- ' . $item_parent); exit;
-
 
         // -- Save Configuration :
         $this->config->save($configuration);

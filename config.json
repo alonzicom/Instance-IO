@@ -118,7 +118,60 @@
             "slug": "test",
             "view": "Home",
             "method": false,
-            "items": []
+            "items": [
+                {
+                    "id": "5455B82EB1192677",
+                    "name": "testing-2",
+                    "title": "new page",
+                    "type": "static",
+                    "slug": "testing-2",
+                    "view": "Page",
+                    "method": false,
+                    "items": [
+                        {
+                            "id": "74C5980B56270541",
+                            "name": "testing-6",
+                            "title": "new page",
+                            "type": "static",
+                            "slug": "testing-6",
+                            "view": "Page",
+                            "method": false,
+                            "items": [
+                                {
+                                    "id": "4528257A45B1E892",
+                                    "name": "testing-7",
+                                    "title": "new page",
+                                    "type": "static",
+                                    "slug": "testing-7",
+                                    "view": "Page",
+                                    "method": false,
+                                    "items": []
+                                },
+                                {
+                                    "id": "117F9B5D5ACF7BCE",
+                                    "name": "testing-8",
+                                    "title": "new page",
+                                    "type": "static",
+                                    "slug": "testing-8",
+                                    "view": "Page",
+                                    "method": false,
+                                    "items": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "8541EB4E2EA6C886",
+                            "name": "testing-9",
+                            "title": "new page",
+                            "type": "static",
+                            "slug": "testing-9",
+                            "view": "Page",
+                            "method": false,
+                            "items": []
+                        }
+                    ]
+                }
+            ]
         },
         {
             "id": "38F6EB1065E66E4D",

@@ -26,18 +26,21 @@ class Sitemap extends Config {
     }
 
     public function getIdByName($name, $sitemap = null){
+
         $this_id = false;
         $sitemap = $sitemap ?? $this->sitemap;
 
         foreach($sitemap as $map){
-            if($map['name'] == $name){
-                $this_id = $map['id'];
-            }
-            if(count($map['items'])>0){
+            if(!$this_id){
+                if($map['name'] == $name){
+                    return $map['id'];
+                }
                 $this_id = $this->getIdByName($name,$map['items']);
             }
         }
+
         return $this_id;
+
     }
 
     public function addItemToPage($parent_id,$newItem){
