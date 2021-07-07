@@ -1,54 +1,72 @@
 <?php 
 
+
 class Compiler {
 
-    public function __construct(private $path, private $map = []){}
+    public function __construct(private $path, private $map = []){
+        $this->Hash = new Hash;
+    }
 
     public function Compile(){
 
-        $pathRoutes = $this->CreatePaths($this->map);
+        $pathRoutes = $this->pathCreator();
+        
+        foreach($pathRoutes as $obj){
 
-        return json_encode($pathRoutes);
+            // -- Explode path into array parts ::
+            $obj = explode('/', $obj);
 
-        foreach($this->map as $obj){
+            // -- Remove first "blank" part ::
+            array_shift($obj);
 
-            /**
-             *  Need to parse the sitemap objects :
-             */
+            // -- Build Path :: 
             $this->Builder($obj);
         }
+
     }
 
     public function CompileView(){
         return $this->Builder($this->path);
     }
 
+    private function pathCreator(){
 
-    private function CreatePaths($items, $paths = [] ){
+        $pathRoutes = $this->pathStringer();
+        $routes = [];
 
-        foreach($items as $obj){
-            
-            if( isset($obj['slug']) && $obj['slug'] !== false ){
-                $paths[] = '/' . $obj['slug'];
-                
-            }else {
-                $paths[] = '/';
+        array_walk_recursive(
+            $pathRoutes,
+            function (&$value) use (&$routes) {
+                $routes[] = $value;
             }
-            
-            // -- If there are children paths ::
-            if(count($obj['items'])>0){
-                $paths = $this->CreatePaths($obj['items'], $paths);
-            }
+        );
 
+        return $routes;
+    }
+
+    private function pathStringer($items = [], $prefix = null){
+
+        $items = empty($items) ? $this->map : $items;
+
+        foreach($items as $item){
+            $slug = '';
+            $slug = ($prefix ?? '') . '/' . $item['slug'];
+            $routes[] = $slug;
+            if(!empty($item['items'])){
+                $routes[] = $this->pathStringer($item['items'], $slug);
+            }
         }
 
-        return $paths;
-
+        return $routes;
     }
 
 
+    /**
+     *  ! - This handles the IIO Build Compiler :: 
+     */
     private function Builder($obj){
-        return 'building...';
+
+        echo 'Building: ' . json_encode($obj) . "\n\n";
 
     }
 
